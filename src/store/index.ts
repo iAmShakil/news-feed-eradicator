@@ -1,4 +1,5 @@
 import { createStore as createReduxStore, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
 
 import rootReducer, { IState } from './reducer';
 import { effectsMiddleware } from '../lib/redux-effects';
@@ -15,7 +16,7 @@ export function createStore(): Store {
 	const store: Store = createReduxStore(
 		rootReducer,
 		undefined,
-		applyMiddleware(effectsMiddleware(rootEffect))
+		applyMiddleware(effectsMiddleware(rootEffect), logger)
 	);
 
 	return store;
